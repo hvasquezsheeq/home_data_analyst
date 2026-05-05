@@ -1,215 +1,35 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SHEEQ Consulting</title>
+  <meta charset="UTF-8">
+  <title>Banner</title>
 
-<style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Segoe UI', sans-serif;
-}
+  <style>
+    body {
+      margin: 0;
+      background: #f5f5f5;
+    }
 
-body {
-  height: 100vh;
-  background: radial-gradient(circle at center, #6d4aff 0%, #2a1f5c 40%, #0b0b1a 100%);
-  overflow: hidden;
-  color: white;
-}
+    .banner {
+      width: 100%;
+      height: 300px; /* ajusta altura aquí */
+      overflow: hidden;
+    }
 
-/* Estrellas */
-body::before {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-image: radial-gradient(white 1px, transparent 1px);
-  background-size: 40px 40px;
-  opacity: 0.2;
-}
-
-.hero {
-  position: relative;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  perspective: 1000px;
-}
-
-/* LOGO */
-.logo {
-  z-index: 5;
-  text-align: center;
-  transition: transform 0.2s ease;
-}
-
-.logo img {
-  width: 340px;
-  max-width: 80vw;
-  filter: 
-    drop-shadow(0 25px 60px rgba(0,0,0,0.7))
-    drop-shadow(0 0 20px rgba(109,74,255,0.6));
-}
-
-h1 {
-  margin-top: 25px;
-  font-size: 1.4rem;
-  letter-spacing: 1px;
-  color: #cfd8ff;
-}
-
-/* CHARTS */
-.chart {
-  position: absolute;
-  backdrop-filter: blur(12px);
-  background: rgba(255,255,255,0.05);
-  border-radius: 16px;
-  padding: 15px;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.4);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer;
-}
-
-/* Hover */
-.chart:hover {
-  transform: translateY(-10px) scale(1.05);
-  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
-}
-
-/* Posiciones (recortadas) */
-.top-left { top: -60px; left: -60px; }
-.top-right { top: -60px; right: -60px; }
-.bottom-left { bottom: -60px; left: -60px; }
-.bottom-right { bottom: -60px; right: -60px; }
-
-/* BARRAS */
-.bars {
-  display: flex;
-  gap: 6px;
-  align-items: flex-end;
-  height: 80px;
-}
-.bars div {
-  width: 12px;
-  border-radius: 4px;
-}
-.b1 { height: 30%; background: #ff9800; }
-.b2 { height: 60%; background: #2196f3; }
-.b3 { height: 80%; background: #4caf50; }
-.b4 { height: 100%; background: #f44336; }
-
-/* PIE */
-.pie {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  background: conic-gradient(
-    #ff9800 0% 25%,
-    #2196f3 25% 50%,
-    #4caf50 50% 75%,
-    #f44336 75% 100%
-  );
-  transition: transform 0.6s ease;
-}
-
-.chart:hover .pie {
-  transform: rotate(180deg);
-}
-
-/* LINE */
-.line {
-  width: 100px;
-  height: 60px;
-  position: relative;
-}
-
-.line::after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(to right, #2196f3, #4caf50, #ff9800);
-  clip-path: polygon(0% 80%, 20% 60%, 40% 70%, 60% 40%, 80% 50%, 100% 20%, 100% 100%, 0% 100%);
-  transition: transform 0.3s ease;
-}
-
-.chart:hover .line::after {
-  transform: scaleY(1.2);
-}
-
-</style>
+    .banner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+  </style>
 </head>
 
 <body>
 
-<section class="hero" id="hero">
-
-  <!-- Gráficos -->
-  <div class="chart top-left">
-    <div class="bars">
-      <div class="b1"></div>
-      <div class="b2"></div>
-      <div class="b3"></div>
-      <div class="b4"></div>
-    </div>
+  <div class="banner">
+    <img src="banner.png" alt="Banner corporativo">
   </div>
-
-  <div class="chart top-right">
-    <div class="pie"></div>
-  </div>
-
-  <div class="chart bottom-left">
-    <div class="line"></div>
-  </div>
-
-  <div class="chart bottom-right">
-    <div class="bars">
-      <div class="b2"></div>
-      <div class="b3"></div>
-      <div class="b4"></div>
-    </div>
-  </div>
-
-  <!-- LOGO -->
-  <div class="logo" id="logo">
-    <img src="logo.png" alt="SHEEQ Consulting">
-    <h1>Data Analytics & Consulting</h1>
-  </div>
-
-</section>
-
-<script>
-const hero = document.getElementById('hero');
-const logo = document.getElementById('logo');
-const charts = document.querySelectorAll('.chart');
-
-hero.addEventListener('mousemove', (e) => {
-  const x = (window.innerWidth / 2 - e.clientX) / 25;
-  const y = (window.innerHeight / 2 - e.clientY) / 25;
-
-  logo.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
-
-  charts.forEach((chart, i) => {
-    const depth = (i + 1) * 5;
-    chart.style.transform = `
-      translate(${x * depth}px, ${y * depth}px)
-      rotateX(${y / 2}deg)
-      rotateY(${x / 2}deg)
-    `;
-  });
-});
-
-hero.addEventListener('mouseleave', () => {
-  logo.style.transform = `rotateY(0deg) rotateX(0deg)`;
-  charts.forEach(chart => {
-    chart.style.transform = `translate(0,0) rotateX(0) rotateY(0)`;
-  });
-});
-</script>
 
 </body>
 </html>
