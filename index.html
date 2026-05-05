@@ -2,34 +2,57 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Banner</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Banner Espacio</title>
 
   <style>
-    body {
+    * {
       margin: 0;
-      background: #f5f5f5;
+      padding: 0;
+      box-sizing: border-box;
     }
 
-    .banner {
-      width: 100%;
-      height: 300px; /* ajusta altura aquí */
-      overflow: hidden;
-    }
-
-    .banner img {
-      width: 100%;
+    body, html {
       height: 100%;
-      object-fit: cover;
-      display: block;
+      font-family: Arial, sans-serif;
+    }
+
+    .hero {
+      width: 100%;
+      height: 100vh;
+      background-image: url('banner_home.png'); /* cambia esto */
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain; /* 👈 CLAVE para ver completa */
+      background-color: black; /* relleno si sobran espacios */
+      display: flex;
+      align-items: center;
+      padding-left: 5%;
+    }
+
+    .texto {
+      color: white;
+      max-width: 500px;
+      font-size: 2.5rem;
+      font-weight: bold;
+      line-height: 1.2;
+    }
+
+    @media (max-width: 768px) {
+      .texto {
+        font-size: 1.8rem;
+      }
     }
   </style>
 </head>
 
 <body>
 
-  <div class="banner">
-    <img src="banner_home.png" alt="Banner corporativo">
-  </div>
+  <section class="hero">
+    <div class="texto">
+      El espacio donde tus datos se transforman en información valiosa.
+    </div>
+  </section>
 
 </body>
 </html>
