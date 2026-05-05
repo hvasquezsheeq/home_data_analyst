@@ -42,19 +42,23 @@ body::before {
 
 /* LOGO */
 .logo {
-  z-index: 2;
+  z-index: 5;
   text-align: center;
   transition: transform 0.2s ease;
 }
 
 .logo img {
-  width: 200px;
-  filter: drop-shadow(0 20px 40px rgba(0,0,0,0.6));
+  width: 340px;
+  max-width: 80vw;
+  filter: 
+    drop-shadow(0 25px 60px rgba(0,0,0,0.7))
+    drop-shadow(0 0 20px rgba(109,74,255,0.6));
 }
 
 h1 {
-  margin-top: 20px;
-  font-weight: 300;
+  margin-top: 25px;
+  font-size: 1.4rem;
+  letter-spacing: 1px;
   color: #cfd8ff;
 }
 
@@ -70,17 +74,17 @@ h1 {
   cursor: pointer;
 }
 
-/* Hover efecto */
+/* Hover */
 .chart:hover {
-  transform: translateY(-10px) scale(1.05) rotateZ(1deg);
+  transform: translateY(-10px) scale(1.05);
   box-shadow: 0 20px 60px rgba(0,0,0,0.6);
 }
 
-/* Posiciones */
-.top-left { top: -40px; left: -40px; }
-.top-right { top: -40px; right: -40px; }
-.bottom-left { bottom: -40px; left: -40px; }
-.bottom-right { bottom: -40px; right: -40px; }
+/* Posiciones (recortadas) */
+.top-left { top: -60px; left: -60px; }
+.top-right { top: -60px; right: -60px; }
+.bottom-left { bottom: -60px; left: -60px; }
+.bottom-right { bottom: -60px; right: -60px; }
 
 /* BARRAS */
 .bars {
@@ -144,7 +148,7 @@ h1 {
 
 <section class="hero" id="hero">
 
-  <!-- Charts -->
+  <!-- Gráficos -->
   <div class="chart top-left">
     <div class="bars">
       <div class="b1"></div>
@@ -170,7 +174,7 @@ h1 {
     </div>
   </div>
 
-  <!-- Logo -->
+  <!-- LOGO -->
   <div class="logo" id="logo">
     <img src="logo.png" alt="SHEEQ Consulting">
     <h1>Data Analytics & Consulting</h1>
@@ -187,10 +191,8 @@ hero.addEventListener('mousemove', (e) => {
   const x = (window.innerWidth / 2 - e.clientX) / 25;
   const y = (window.innerHeight / 2 - e.clientY) / 25;
 
-  // Movimiento logo
   logo.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
 
-  // Movimiento charts (parallax)
   charts.forEach((chart, i) => {
     const depth = (i + 1) * 5;
     chart.style.transform = `
@@ -201,7 +203,6 @@ hero.addEventListener('mousemove', (e) => {
   });
 });
 
-// Reset cuando sales
 hero.addEventListener('mouseleave', () => {
   logo.style.transform = `rotateY(0deg) rotateX(0deg)`;
   charts.forEach(chart => {
